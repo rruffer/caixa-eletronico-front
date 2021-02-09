@@ -30,6 +30,21 @@ mat-card {
     align-items: center;
   }
 
+  .info-snackbar {
+    background: #2196F3;
+  }
+
+  .atencion-snackbar {
+    background: #d7e60c;
+  }
+
+  .error-snackbar {
+    background: #ca1d06;
+  }
+
+  .success-snackbar {
+    background: #3ec409;
+  }
 
 /*.mat-form-field-infix {
   width: 750px !important;

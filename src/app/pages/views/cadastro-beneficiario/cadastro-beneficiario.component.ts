@@ -1,6 +1,10 @@
+import { MensagemService } from './../../../services/mensagem.service';
+import { Cliente } from './../../../models/cliente';
+import { CadastroApiService } from './../../../services/cadastro-api.service';
 import { Validacao } from './../../../models/validacao';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cadastro-beneficiario',
@@ -10,9 +14,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CadastroBeneficiarioComponent implements OnInit {
 
   form: FormGroup;
+  cliente: Cliente;
 
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private mensagemService: MensagemService,
+    private cadastroApiService: CadastroApiService) { }
 
   ngOnInit() {
 
@@ -24,16 +32,26 @@ export class CadastroBeneficiarioComponent implements OnInit {
       qtdAnosAposentadoria: [null, { validators: [Validators.required], updateOn: "change" }],
     });
 
+    this.cliente = new Cliente();
+
   }
 
   onSubmit(): void {
-
     if (this.form.valid) {
-
-    } else {
-
+      try {
+        this.cadastroApiService.cadastrarBeneficiario(this.cliente).subscribe(
+          response => {
+            console.log(response);
+            this.mensagemService.sucesso('Cliente salvo com sucesso!');
+          },
+          error => {
+            this.mensagemService.erro('Ocorreu um erro ao salvar cliente!');
+          }
+        );
+      } catch(error) {
+        this.mensagemService.erro('Ocorreu um erro ao salvar cliente!');
+      }
     }
-
   }
 
 }
