@@ -1,3 +1,4 @@
+import { Validacao } from './../../../models/validacao';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -17,7 +18,7 @@ export class CadastroBeneficiarioComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       nome: [null, { validators: [Validators.required], updateOn: "change" }],
-      cpf: [null, { validators: [Validators.required], updateOn: "change" }],
+      cpf: [null, { validators: [Validators.required, Validacao.ValidaCpf], updateOn: "change" }],
       email: [null, { validators: [Validators.required, Validators.email], updateOn: "change" }],
       totalSaldoAposentadoria: [null, { validators: [Validators.required], updateOn: "change" }],
       qtdAnosAposentadoria: [null, { validators: [Validators.required], updateOn: "change" }],
@@ -30,7 +31,7 @@ export class CadastroBeneficiarioComponent implements OnInit {
     if (this.form.valid) {
 
     } else {
-      alert('erro form');
+
     }
 
   }
