@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModalProgressComponent } from './components/modal-progress/modal-progress.component';
+import { ConsultarBeneficiarioComponent } from './pages/views/consultar-beneficiario/consultar-beneficiario.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ModalProgressComponent } from './components/modal-progress/modal-progre
     MainComponent,
     HeaderComponent,
     FooterComponent,
-    ModalProgressComponent
+    ModalProgressComponent,
+    ConsultarBeneficiarioComponent
   ],
   imports: [
     BrowserModule,

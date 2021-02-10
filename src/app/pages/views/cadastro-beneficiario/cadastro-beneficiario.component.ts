@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { ModalService } from '../../../services/modal-service';
 import { MensagemService } from './../../../services/mensagem.service';
 import { Cliente } from './../../../models/cliente';
@@ -45,11 +46,18 @@ export class CadastroBeneficiarioComponent implements OnInit {
 
       try {
         this.cadastroApiService.cadastrarBeneficiario(this.cliente).subscribe(
-          response => {
+          (response: Response) => {
             console.log(response);
             this.mensagemService.sucesso('Cliente salvo com sucesso!');
+
           },
-          error => {
+          (error: HttpErrorResponse) => {
+
+            if(error.status === 420) {
+              this.mensagemService.alerta('Cliente já está cadastrado!');
+              return;
+            }
+
             this.mensagemService.erro('Ocorreu um erro ao salvar cliente!');
           }
         );

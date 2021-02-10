@@ -23,6 +23,10 @@ export class CadastroApiService {
     return this.httpClient.post(this.url, cliente, { observe: 'response', reportProgress: true });
   }
 
+  consultarBeneficiario(cpf: string): Observable<any> {
+    return this.httpClient.get(`${this.url}${cpf} `, { observe: 'response', reportProgress: true });
+  }
+
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';
     if (error.error instanceof ErrorEvent) {
