@@ -1,3 +1,5 @@
+import { HttpProgressInterceptor } from './interceptors/http-progress-interceptor';
+import { ToastModule } from './modules/toast-module';
 import { MaskModule } from './modules/mask.module';
 import { FooterComponent } from './pages/main/footer/footer.component';
 import { HeaderComponent } from './pages/main/header/header.component';
@@ -12,7 +14,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ModalProgressComponent } from './components/modal-progress/modal-progress.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     CadastroBeneficiarioComponent,
     MainComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ModalProgressComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +34,10 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     MaterialModule,
     FlexLayoutModule,
-    MaskModule
+    MaskModule,
+    ToastModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpProgressInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

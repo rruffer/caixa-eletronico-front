@@ -1,3 +1,4 @@
+import { ModalService } from '../../../services/modal-service';
 import { MensagemService } from './../../../services/mensagem.service';
 import { Cliente } from './../../../models/cliente';
 import { CadastroApiService } from './../../../services/cadastro-api.service';
@@ -20,6 +21,7 @@ export class CadastroBeneficiarioComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private mensagemService: MensagemService,
+    private modalService: ModalService,
     private cadastroApiService: CadastroApiService) { }
 
   ngOnInit() {
@@ -38,6 +40,9 @@ export class CadastroBeneficiarioComponent implements OnInit {
 
   onSubmit(): void {
     if (this.form.valid) {
+
+      //this.modalService.progress();
+
       try {
         this.cadastroApiService.cadastrarBeneficiario(this.cliente).subscribe(
           response => {

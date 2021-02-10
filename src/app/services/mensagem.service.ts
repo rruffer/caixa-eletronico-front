@@ -1,48 +1,26 @@
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MensagemService {
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(private toastr: ToastrService) {
 
-
-  sucesso(msg: string, duration = 5000): void {
-    this.snackBar.open(msg, 'Fechar', {
-      duration: duration,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-      panelClass: ['success-snackbar']
-    })
   }
 
-  atencao(msg: string, duration = 5000): void {
-    this.snackBar.open(msg, 'Fechar', {
-      duration: duration,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-      panelClass: ['atencion-snackbar']
-    })
+  info(mensagem: string): void {
+    this.toastr.info(mensagem, 'Informação');
   }
-
-  info(msg: string, duration = 5000): void {
-    this.snackBar.open(msg, 'Fechar', {
-      duration: duration,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-      panelClass: ['info-snackbar']
-    })
+  sucesso(mensagem: string): void {
+    this.toastr.success(mensagem, 'Sucesso');
   }
-
-  erro(msg: string, duration = 5000): void {
-    this.snackBar.open(msg, 'Fechar', {
-      duration: duration,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-      panelClass: ['error-snackbar']
-    })
+  alerta(mensagem: string): void {
+    this.toastr.warning(mensagem, 'Alerta');
+  }
+  erro(mensagem: string): void {
+    this.toastr.error(mensagem, 'Erro');
   }
 
 }
