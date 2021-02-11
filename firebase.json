@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "dist/caixa-eletronico",
     "ignore": [
       "firebase.json",
       "**/.*",

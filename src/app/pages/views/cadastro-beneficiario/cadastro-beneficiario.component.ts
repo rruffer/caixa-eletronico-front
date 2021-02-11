@@ -48,13 +48,20 @@ export class CadastroBeneficiarioComponent implements OnInit {
         this.cadastroApiService.cadastrarBeneficiario(this.cliente).subscribe(
           (response: Response) => {
             console.log(response);
-            this.cliente = new Cliente();
+            //this.cliente = new Cliente();
+
+            this.form.reset();
+
+            Object.keys(this.form.controls).forEach(key => {
+              this.form.controls[key].setErrors(null)
+            });
+
             this.mensagemService.sucesso('Cliente salvo com sucesso!');
 
           },
           (error: HttpErrorResponse) => {
 
-            if(error.status === 420) {
+            if (error.status === 420) {
               this.mensagemService.alerta('Cliente já está cadastrado!');
               return;
             }
@@ -62,7 +69,7 @@ export class CadastroBeneficiarioComponent implements OnInit {
             this.mensagemService.erro('Ocorreu um erro ao salvar cliente!');
           }
         );
-      } catch(error) {
+      } catch (error) {
         this.mensagemService.erro('Ocorreu um erro ao salvar cliente!');
       }
     }

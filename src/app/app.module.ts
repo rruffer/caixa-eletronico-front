@@ -17,6 +17,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModalProgressComponent } from './components/modal-progress/modal-progress.component';
 import { ConsultarBeneficiarioComponent } from './pages/views/consultar-beneficiario/consultar-beneficiario.component';
+import { ModalDadosClienteComponent } from './components/modal-dados-cliente/modal-dados-cliente.component';
 
 @NgModule({
   declarations: [
@@ -25,8 +26,9 @@ import { ConsultarBeneficiarioComponent } from './pages/views/consultar-benefici
     MainComponent,
     HeaderComponent,
     FooterComponent,
+    ConsultarBeneficiarioComponent,
     ModalProgressComponent,
-    ConsultarBeneficiarioComponent
+    ModalDadosClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,10 @@ import { ConsultarBeneficiarioComponent } from './pages/views/consultar-benefici
     FlexLayoutModule,
     MaskModule,
     ToastModule
+  ],
+  entryComponents: [
+    ModalProgressComponent,
+    ModalDadosClienteComponent
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpProgressInterceptor, multi: true },],
   bootstrap: [AppComponent]

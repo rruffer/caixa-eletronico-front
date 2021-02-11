@@ -1,3 +1,4 @@
+import { ModalService } from './../../../services/modal-service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Validacao } from './../../../models/validacao';
 import { CadastroApiService } from './../../../services/cadastro-api.service';
@@ -20,6 +21,7 @@ export class ConsultarBeneficiarioComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private mensagemService: MensagemService,
+    private modalService: ModalService,
     private cadastroApiService: CadastroApiService) { }
 
   ngOnInit() {
@@ -34,9 +36,10 @@ export class ConsultarBeneficiarioComponent implements OnInit {
     if (this.form.valid) {
 
       this.cadastroApiService.consultarBeneficiario(this.cpf).subscribe(
-        (response: Response) => {
+        response => {
           console.log(response);
-          this.mensagemService.sucesso('Cliente salvo com sucesso!');
+          this.modalService.infoCliente(response.body);
+          //this.mensagemService.sucesso('Cliente salvo com sucesso!');
         },
         (error: HttpErrorResponse) => {
 

@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Cliente } from './../models/cliente';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -10,7 +11,7 @@ import { catchError } from 'rxjs/operators';
 export class CadastroApiService {
 
   //private url = 'http://localhost:8080/cadastro-beneficio/api/cadastro/';
-  private url = 'http://localhost:8080/cadastro-beneficio/api/cadastro/';
+  private url = environment.urlApi;
 
   constructor(private httpClient: HttpClient) { }
 
