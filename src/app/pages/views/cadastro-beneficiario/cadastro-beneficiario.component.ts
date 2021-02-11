@@ -48,6 +48,7 @@ export class CadastroBeneficiarioComponent implements OnInit {
         this.cadastroApiService.cadastrarBeneficiario(this.cliente).subscribe(
           (response: Response) => {
             console.log(response);
+            this.cliente = new Cliente();
             this.mensagemService.sucesso('Cliente salvo com sucesso!');
 
           },
