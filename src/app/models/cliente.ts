@@ -6,5 +6,6 @@ export class Cliente {
 	email: string;
 	totalSaldoAposentadoria: number;
 	qtdAnosAposentadoria: number;
+  valorMensalAposentadoria: number;
 
 }

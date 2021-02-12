@@ -17,7 +17,8 @@ progress(): MatDialogRef<ModalProgressComponent> {
 
 infoCliente(cliente: Cliente): void {
   this.dialog.open(ModalDadosClienteComponent, {
-    data: cliente
+    data: cliente,
+    disableClose: true
   });
 }
 
